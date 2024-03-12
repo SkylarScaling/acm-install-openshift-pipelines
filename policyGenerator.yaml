@@ -1,0 +1,27 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: PolicyGenerator
+metadata:
+  name: policy-openshift-pipelines-install
+placementBindingDefaults:
+  name: "pipelines-install-binding"
+policyDefaults:
+  categories:
+    - CM Configuration Management
+  controls:
+    - CM-2 Baseline Configuration
+  namespace: acm-install-policies
+  policySets:
+    - openshift-pipelines-install
+  remediationAction: enforce
+  severity: medium
+policies:
+  - name: pipelines-operator-subscription
+    manifests:
+      - path: pipelines-operator/pipelines-subscription.yaml
+    policySets:
+      - openshift-pipelines
+policySets:
+  - description: The OpenShift Pipelines policy set installs the OpenShift Pipelines operator on target clusters.
+    name: openshift-pipelines
+    placement:
+      placementRulePath: placements/pipelines-placement.yaml
