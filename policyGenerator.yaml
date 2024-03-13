@@ -20,6 +20,12 @@ policies:
       - path: pipelines-operator/pipelines-subscription.yaml
     policySets:
       - openshift-pipelines
+  - name: pipelines-operator-status
+    manifests:
+      - path: pipelines-operator/pipelines-operator-status.yaml
+    policySets:
+      - openshift-pipelines
+    remediationAction: inform
 policySets:
   - description: The OpenShift Pipelines policy set installs the OpenShift Pipelines operator on target clusters.
     name: openshift-pipelines
